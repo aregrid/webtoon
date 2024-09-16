@@ -1,6 +1,6 @@
 {
-    "name": "webtoon-sdk",
-    "version": "1.0.0",
+    "name": "webtoon",
+    "version": "1.0.1",
     "main": "dist/Webtoon.js",
     "scripts": {
         "build": "tsc",
