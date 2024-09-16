@@ -1,6 +1,5 @@
-// import axios from 'axios';
-// import FormData from 'form-data'; 
-import { ComicArtworkResponse } from './models/ComicArtworkResponse'; // Ensure the path is correct
+import { ComicArtworkResponse } from './models/ComicArtworkResponse';
+import fetch from 'node-fetch';
 
 // Define interfaces for parameters
 interface CreateComicArtworkParams {
@@ -37,23 +36,26 @@ class Webtoon {
      */
     async createComicArtwork(params: CreateComicArtworkParams): Promise<Object> {
         const { prompt, imageUrl, gender, age } = params;
-        // const formdata = new FormData();
-        // formdata.append("prompt", prompt);
-        // formdata.append("imageUrl", imageUrl);
-        // formdata.append("gender", gender);
-        // formdata.append("age", age.toString());
+        const formdata = new FormData(); // Use native FormData
+        formdata.append("prompt", prompt);
+        formdata.append("imageUrl", imageUrl);
+        formdata.append("gender", gender);
+        formdata.append("age", age.toString());
 
-        // const response = await axios.post(`${this.baseUrl}/artworks`, formdata, {
-        //     headers: {
-        //         "Authorization": `Bearer ${this.apiKey}`,
-        //         ...formdata.getHeaders(), // Include FormData headers
-        //     },
-        // });
+        const response = await fetch(`${this.baseUrl}/artworks`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${this.apiKey}`,
+                "Content-Type": "multipart/form-data", // Set content type explicitly
+            },
+            body: formdata,
+        });
 
-        // return response.data;
-        return {
-            artworkId: "12345",
-        };
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        //@ts-ignore
+        return response.json();
     }
 
     /**
@@ -62,22 +64,19 @@ class Webtoon {
      * @returns A promise that resolves to the comic artwork response.
      */
     async getComicArtwork(artworkId: string): Promise<ComicArtworkResponse> {
-        // const response = await axios.get(`${this.baseUrl}/artworks/${artworkId}`, {
-        //     headers: {
-        //         "Authorization": `Bearer ${this.apiKey}`,
-        //     },
-        // });
+        const response = await fetch(`${this.baseUrl}/artworks/${artworkId}`, {
+            headers: {
+                "Authorization": `Bearer ${this.apiKey}`,
+            },
+        });
 
-        // return response.data;
-        return {
-            id: '123',
-            status: "success",
-            comicData: "[]"
-        };
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        //@ts-ignore
+        return response.json() as ComicArtworkResponse;
     }
-
 }
-
 
 /**
  * Configures the Webtoon instance with an API key.
