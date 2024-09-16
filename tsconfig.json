@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "ES6",
+        "target": "es6",
         "module": "commonjs",
         "strict": true,
         "esModuleInterop": true,
@@ -9,6 +9,6 @@
         "outDir": "./dist",
         "types": ["jest", "node"],
     },
-    "include": ["src/**/*", "__tests__/**/*"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["src/**/*", "__tests__/**/*"], // Include your test files
+    "exclude": ["node_modules"] // Exclude node_modules
 }
