@@ -1,5 +1,4 @@
 import { ComicArtworkResponse } from './models/ComicArtworkResponse';
-import fetch from 'node-fetch';
 
 // Define interfaces for parameters
 interface CreateComicArtworkParams {
@@ -36,7 +35,7 @@ class Webtoon {
      */
     async createComicArtwork(params: CreateComicArtworkParams): Promise<Object> {
         const { prompt, imageUrl, gender, age } = params;
-        const formdata = new FormData(); // Use native FormData
+        const formdata = new URLSearchParams(); // Use URLSearchParams instead
         formdata.append("prompt", prompt);
         formdata.append("imageUrl", imageUrl);
         formdata.append("gender", gender);
@@ -46,9 +45,9 @@ class Webtoon {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${this.apiKey}`,
-                "Content-Type": "multipart/form-data", // Set content type explicitly
+                "Content-Type": "application/x-www-form-urlencoded", // Change content type accordingly
             },
-            body: formdata,
+            body: formdata, // Use URLSearchParams as the body
         });
 
         if (!response.ok) {

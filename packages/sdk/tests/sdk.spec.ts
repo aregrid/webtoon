@@ -1,4 +1,6 @@
 // import { createComicArtwork, getComicArtwork, config } from '../dist/Webtoon'; // Change to built version
+require('isomorphic-fetch');
+
 import Webtoon, { createComicArtwork, getComicArtwork, config } from '../src/Webtoon';
 
 describe('Webtoon', () => {
@@ -19,21 +21,19 @@ describe('Webtoon', () => {
 
         // Remove mock and use actual request
         const result = await createComicArtwork(params);
-        expect(result).toHaveProperty('artworkId'); // Adjust based on actual response structure
+        expect(result).toHaveProperty('artwork'); // Adjust based on actual response structure
+        expect(result).toHaveProperty('code', 200); // Adjust based on actual response structure
     });
 
     test('should retrieve comic artwork by ID', async () => {
-        const artworkId = '12345';
+        const artworkId = 'cm157cn28001tl5034krsd2dc';
         
         // Remove mock and use actual request
         const result = await getComicArtwork(artworkId);
-        expect(result).toHaveProperty('id'); // Adjust based on actual response structure
-        expect(result).toHaveProperty('comicData'); // Adjust based on actual response structure
-        expect(result).toHaveProperty('status'); // Adjust based on actual response structure
+        expect(result).toHaveProperty('createdAt');
+        expect(result).toHaveProperty('status');
 
     });
 
-    // test('should throw error if API key is not provided', () => {
-    //     expect(() => Webtoon.getInstance()).toThrow('API key is required');
-    // });
+
 });
