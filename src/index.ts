@@ -1,4 +1,10 @@
-class WebtoonSDK {
+import FormData from 'form-data';
+interface ComicArtworkResponse {
+    status: string; // Adjust the type as necessary
+    comicData: any; // Replace 'any' with the actual type if known
+}
+
+class Webtoon {
     apiKey: string;
     baseUrl: string;
 
@@ -44,9 +50,9 @@ class WebtoonSDK {
     /**
      * Retrieves the generated comic panels for a specific artwork ID.
      * @param {string} artworkId - The ID of the comic artwork to retrieve.
-     * @returns {Promise<Object>} - The response from the API.
+     * @returns {Promise<ComicArtworkResponse>} - The response from the API.
      */
-    async getComicArtwork(artworkId: string): Promise<Object> {
+    async getComicArtwork(artworkId: string): Promise<ComicArtworkResponse> { // Update return type
         const headers = new Headers();
         headers.append("Authorization", `Bearer ${this.apiKey}`);
 
@@ -62,4 +68,4 @@ class WebtoonSDK {
     }
 }
 
-export default WebtoonSDK;
+export default Webtoon;
