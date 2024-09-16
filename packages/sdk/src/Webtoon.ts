@@ -1,6 +1,7 @@
 import axios from 'axios';
-import FormData from 'form-data';
-import { ComicArtworkResponse } from '../models/ComicArtworkResponse';
+import FormData from 'form-data'; 
+
+import { ComicArtworkResponse } from './models/ComicArtworkResponse'; // 确保路径正确
 
 class Webtoon {
     apiKey: string;

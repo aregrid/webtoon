@@ -1,6 +1,6 @@
 import 'dotenv/config'; // Load environment variables from .env file
-import Webtoon from '../src/index';
-import { Artwork } from '../src/types/artwork'; // Import Artwork type
+import Webtoon from '../../../dist/src/services/Webtoon.js';
+import { Artwork } from '../../../dist/src/models/ComicArtworkResponse.js'; // Import Artwork type
 
 describe('WebtoonSDK', () => {
     const apiKey: string | undefined = process.env.WEBTOON_API_KEY; // Allow undefined
