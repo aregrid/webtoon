@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 const MangaEditor = () => {
     const [prompt, setPrompt] = useState("");
     const [imageUrl, setImageUrl] = useState("https://s.llamagen.ai/a76b63ea-9e3d-41c4-b1a2-727509ed38e1.webp");
-    const [artworkId, setArtworkId] = useState("");
+    const [artworkId, setArtworkId] = useState("cm1599ue4000bkz031sim37t0");
     const [response, setResponse] = useState(null);
     const [fetching, setFetching] = useState(false);
     const [loading, setLoading] = useState(false); // New state for loading
@@ -29,12 +29,13 @@ const MangaEditor = () => {
         .then(res => {
             console.log("Artwork created:", res);
             setResponse(res);
-            setArtworkId(res.id);
+            setArtworkId(res.artwork.id);
+            
             setFetching(true);
         })
         .catch(error => {
             console.error("Error creating artwork:", error);
-            setLoading(false); // Stop loading on error
+            // setLoading(false); // Stop loading on error
         });
     };
 
@@ -55,11 +56,16 @@ const MangaEditor = () => {
             .then(res => {
                 console.log("Artwork retrieved:", res);
                 setResponse(res);
-                setLoading(false); // Stop loading when artwork is retrieved
+                // setLoading(false); // Stop loading when artwork is retrieved
+                if( response && response?.comicData){
+                    setLoading(false);
+                 }else{
+                    setLoading(true);
+                 }
             })
             .catch(error => {
                 console.error("Error retrieving artwork:", error);
-                setLoading(false); // Stop loading on error
+                // setLoading(false); // Stop loading on error
             });
     };
 
@@ -112,7 +118,12 @@ const MangaEditor = () => {
                 className="border border-gray-300 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button 
-                onClick={handleGetArtwork} 
+                onClick={() => {
+                    handleGetArtwork();
+                    if (response && response.status === "LOADING") {
+                        setFetching(true); // Continue heartbeat fetch if status is LOADING
+                    }
+                }} 
                 className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200"
             >
                 Get Artwork
