@@ -1,11 +1,13 @@
-
-
 # Good Example for create the comics, manga and manhwa with the webtoon SDK
 
 Here's a good example of how to use the Webtoon SDK to create and retrieve comic artworks:
 
 ```javascript
-import {createComicArtwork , getComicArtwork , config} from 'webtoon';
+import {
+    createComicArtwork,
+    getComicArtwork,
+    config
+} from 'webtoon';
 
 config({
     apiKey: "YOUR_API_KEY"
@@ -35,4 +37,4 @@ getComicArtwork(artworkId).then(response => {
 }).catch(error => {
     console.error("Error retrieving artwork:", error);
 });
-
+```
