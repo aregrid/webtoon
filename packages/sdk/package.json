@@ -1,11 +1,11 @@
 {
     "name": "webtoon",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "main": "dist/Webtoon.js",
     "scripts": {
         "build": "tsc",
         "test": "npm run build && jest",
-        "test1": "node --experimental-vm-modules node_modules/.bin/jest"
+        "publish": "npm run build && npm publish --ignore src" 
     },
     "devDependencies": {
         "@babel/core": "^7.25.2",
