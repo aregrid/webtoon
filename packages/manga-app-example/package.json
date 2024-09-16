@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "dotenv -e .env.local next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,7 +12,8 @@
     "dotenv": "^16.4.5",
     "next": "14.2.11",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "webtoon": "^1.0.5"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -22,6 +23,7 @@
     "eslint-config-next": "14.2.11",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "dotenv-cli": "^6.0.0",
     "typescript": "^5"
   }
 }

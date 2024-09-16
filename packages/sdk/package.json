@@ -5,7 +5,7 @@
     "scripts": {
         "build": "tsc",
         "test": "npm run build && jest",
-        "publish": "npm run build && npm publish --ignore src" 
+        "publish": "npm run build && npm publish" 
     },
     "devDependencies": {
         "@babel/core": "^7.25.2",
