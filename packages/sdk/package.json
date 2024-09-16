@@ -4,7 +4,7 @@
     "main": "dist/Webtoon.js",
     "scripts": {
         "build": "tsc",
-        "test": "jest"
+        "test": "npm run build && jest"
     },
     "devDependencies": {
         "@babel/preset-typescript": "^7.24.7",
