@@ -12,7 +12,7 @@ export async function POST(req: Request) { // {{ edit_2 }}
 }
 
 export async function GET(req: Request) { // {{ edit_3 }}
-    let query = new URL(req.url).searchParams || {};
+    const query = new URL(req.url).searchParams || {};
 
     const artwork = await getComicArtwork(query.get('artworkId') || ''); // Updated to use req.url
     return NextResponse.json(artwork); // Updated to use NextResponse
