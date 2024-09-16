@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
+        "module": "ESNext", // or "CommonJS" based on your setup
         "target": "ESNext",
-        "module": "ESNext",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
         "outDir": "dist",
         "strict": true,
-        "esModuleInterop": true,
         "moduleResolution": "node" // 添加此行
     },
     "include": ["src/**/*"]
