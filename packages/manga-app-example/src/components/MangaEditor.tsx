@@ -6,12 +6,17 @@ const MangaEditor = () => {
     const [prompt, setPrompt] = useState("");
     const [imageUrl, setImageUrl] = useState("https://s.llamagen.ai/a76b63ea-9e3d-41c4-b1a2-727509ed38e1.webp");
     const [artworkId, setArtworkId] = useState("cm1599ue4000bkz031sim37t0");
-    const [response, setResponse] = useState(null);
+    const [response, setResponse] = useState<{ comicData?: any } | null>(null); // Define response type
     const [loading, setLoading] = useState(false);
     const [fetching, setFetching] = useState(false);
 
     useEffect(() => {
         if (artworkId) {
+            if(response?.comicData){
+                setFetching(false);
+                setLoading(false);
+                return;
+            }
             const intervalId = setInterval(getArtwork, 5000); // Fetch artwork every 5 seconds
             return () => clearInterval(intervalId); // Cleanup on unmount or artworkId change
         }
@@ -59,9 +64,9 @@ const MangaEditor = () => {
 
     const renderComicPanels = () => {
         if (!response?.comicData) return null;
-        return response.comicData.map((comic, index) => (
+        return response?.comicData.map((comic: any, index: any) => (
             <div key={index} className="comic-layout w-[720px] mx-auto grid grid-cols-3 gap-4 border border-black p-4 mb-4 rounded-lg shadow-lg bg-white">
-                {comic.panels.slice(0, 6).map((panel, panelIndex) => (
+                {comic.panels.slice(0, 6).map((panel: { assetUrl: string }, panelIndex: number) => ( // Specify panel type
                     <div key={panelIndex} className="panel border border-black mb-4 rounded-lg overflow-hidden">
                         <img src={panel.assetUrl} alt={`Panel ${panelIndex}`} className="panel-image w-full h-auto" />
                     </div>
