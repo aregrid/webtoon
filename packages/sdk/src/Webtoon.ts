@@ -1,5 +1,5 @@
-import axios from 'axios';
-import FormData from 'form-data'; 
+// import axios from 'axios';
+// import FormData from 'form-data'; 
 import { ComicArtworkResponse } from './models/ComicArtworkResponse'; // Ensure the path is correct
 
 // Define interfaces for parameters
@@ -37,20 +37,23 @@ class Webtoon {
      */
     async createComicArtwork(params: CreateComicArtworkParams): Promise<Object> {
         const { prompt, imageUrl, gender, age } = params;
-        const formdata = new FormData();
-        formdata.append("prompt", prompt);
-        formdata.append("imageUrl", imageUrl);
-        formdata.append("gender", gender);
-        formdata.append("age", age.toString());
+        // const formdata = new FormData();
+        // formdata.append("prompt", prompt);
+        // formdata.append("imageUrl", imageUrl);
+        // formdata.append("gender", gender);
+        // formdata.append("age", age.toString());
 
-        const response = await axios.post(`${this.baseUrl}/artworks`, formdata, {
-            headers: {
-                "Authorization": `Bearer ${this.apiKey}`,
-                ...formdata.getHeaders(), // Include FormData headers
-            },
-        });
+        // const response = await axios.post(`${this.baseUrl}/artworks`, formdata, {
+        //     headers: {
+        //         "Authorization": `Bearer ${this.apiKey}`,
+        //         ...formdata.getHeaders(), // Include FormData headers
+        //     },
+        // });
 
-        return response.data;
+        // return response.data;
+        return {
+            artworkId: "12345",
+        };
     }
 
     /**
@@ -59,13 +62,18 @@ class Webtoon {
      * @returns A promise that resolves to the comic artwork response.
      */
     async getComicArtwork(artworkId: string): Promise<ComicArtworkResponse> {
-        const response = await axios.get(`${this.baseUrl}/artworks/${artworkId}`, {
-            headers: {
-                "Authorization": `Bearer ${this.apiKey}`,
-            },
-        });
+        // const response = await axios.get(`${this.baseUrl}/artworks/${artworkId}`, {
+        //     headers: {
+        //         "Authorization": `Bearer ${this.apiKey}`,
+        //     },
+        // });
 
-        return response.data;
+        // return response.data;
+        return {
+            id: '123',
+            status: "success",
+            comicData: "[]"
+        };
     }
 
 }

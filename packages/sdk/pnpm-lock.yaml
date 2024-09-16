@@ -24,6 +24,9 @@ importers:
       '@types/jest':
         specifier: ^27.5.2
         version: 27.5.2
+      '@types/node':
+        specifier: ^22.5.5
+        version: 22.5.5
       axios:
         specifier: ^1.7.7
         version: 1.7.7
