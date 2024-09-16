@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "ESNext", // or "CommonJS" based on your setup
+        "module": "CommonJS", // or "CommonJS" based on your setup
         "target": "ESNext",
         "esModuleInterop": true,
         "skipLibCheck": true,

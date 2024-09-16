@@ -1,11 +1,19 @@
 // jest.config.js
 module.exports = {
-    setupFiles: ['./jest.setup.js'], // Adjust the path if necessary
-
+    setupFiles: ["./jest.setup.js"], // Adjust the path if necessary
+    "collectCoverageFrom": ["src/*.ts", "src/**/*.ts"],
+    preset: "ts-jest",
+    testEnvironment: "node",
     transform: {
-        '^.+\\.tsx?$': 'ts-jest', // For TypeScript
-        '^.+\\.jsx?$': 'babel-jest', // For JavaScript
+        '^.+\\.js$': 'babel-jest',
+        "^.+\\.ts?$": "ts-jest"
     },
-    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-    testEnvironment: 'node',
+    transformIgnorePatterns: [
+        "/node_modules/(?!axios)"
+    ],
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+    moduleNameMapper:{
+        "@/(.*)$": "<rootDir>/src/$1"
+      }
+
 };

@@ -1,5 +1,5 @@
 import Webtoon, { createComicArtwork, getComicArtwork, config } from '../dist/Webtoon'; // Change to built version
-
+// import Webtoon, { createComicArtwork, getComicArtwork, config } from '../src/Webtoon';
 
 describe('Webtoon', () => {
     const WEBTOON_API_KEY = process.env.WEBTOON_API_KEY; // Use API key from environment variables
