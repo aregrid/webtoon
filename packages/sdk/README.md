@@ -5,9 +5,9 @@
 Here's a good example of how to use the Webtoon SDK to create and retrieve comic artworks:
 
 ```javascript
-import {createComicArtwork , getComicArtwork , Webtoon} from 'webtoon';
+import {createComicArtwork , getComicArtwork , config} from 'webtoon';
 
-Webtoon.config({
+config({
     apiKey: "YOUR_API_KEY"
 });
 
