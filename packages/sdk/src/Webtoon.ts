@@ -75,7 +75,7 @@ class Webtoon {
  * Configures the Webtoon instance with an API key.
  * @param config - Configuration object containing the API key.
  */
-function config(config: { apiKey: string }) {
+function config(config: { apiKey: string|undefined }) {
     return Webtoon.getInstance(config.apiKey);
 }
 

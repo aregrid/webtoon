@@ -1,11 +1,9 @@
 import Webtoon, { createComicArtwork, getComicArtwork, config } from '../src/Webtoon';
 import dotenv from 'dotenv';
-dotenv.config();
 
 describe('Webtoon', () => {
-    const apiKey = process.env.API_KEY; // Use API key from environment variables
-    const webtoonInstance = Webtoon.getInstance(apiKey);
-    config({ apiKey: apiKey });
+    const WEBTOON_API_KEY = process.env.WEBTOON_API_KEY; // Use API key from environment variables
+    config({ apiKey: WEBTOON_API_KEY });
     afterEach(() => {
         jest.clearAllMocks();
     });
