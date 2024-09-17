@@ -1,8 +1,8 @@
-import MangaEditor from "../components/MangaEditor";
+import WebtoonEditor from "../components/WebtoonEditor";
 export default function Home() {
   return (
      <div>
-      <MangaEditor />
+      <WebtoonEditor />
      </div>
   );
 }
