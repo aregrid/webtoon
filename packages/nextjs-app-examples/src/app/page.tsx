@@ -20,7 +20,7 @@ const examples: Example[] = [
     title: 'Digital Campaign',
     description: 'An advanced issue tracking system',
     tag: 'Digital Campaign',
-    image:"https://s.llamagen.ai/cm1599ue4000bkz031sim37t0-0.webp"
+    image: "https://s.llamagen.ai/cm1599ue4000bkz031sim37t0-0.webp"
   },
 ];
 
@@ -55,64 +55,69 @@ const categories = [
   { name: "Branding", icon: PenTool },
   { name: "Product Packaging", icon: Box },
   { name: "Fashion Design", icon: Shirt },
-  
+
 ];
 
 export default function ExamplesPage() {
   return (
-    <div className="flex h-screen  text-white">
-      <aside className="w-64 p-4 border-r border-gray-800">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium">All technologies</span>
-          <ChevronDown className="w-4 h-4" />
-        </div>
-        <ScrollArea className="h-[calc(100vh-8rem)]">
-          <nav className="space-y-2">
-            {categories.map((category) => (
-              <Button
-                key={category.name}
-                variant={category.active ? "secondary" : "ghost"}
-                className="w-full justify-start"
-              >
-                <category.icon className="mr-2 h-4 w-4" />
-                {category.name}
-              </Button>
+    <div className='max-w-7xl mx-auto py-20'>
+      <div className='w-[400px] mx-auto py-10'>
+      <h1 className="text-2xl font-bold mb-8 text-center text-gray-400">OPEN-SOURCE EXAMPLES</h1>
+      <h2 className="text-7xl text-center mb-12 text-white">Built with LlamaGen.Ai</h2>
+      </div>
+      <div className="flex h-screen  text-white ">
+        <aside className="w-64 p-4 border-r border-gray-800">
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm font-medium">All technologies</span>
+            <ChevronDown className="w-4 h-4" />
+          </div>
+          <ScrollArea className="h-[calc(100vh-8rem)]">
+            <nav className="space-y-2">
+              {categories.map((category) => (
+                <Button
+                  key={category.name}
+                  variant={category.active ? "secondary" : "ghost"}
+                  className="w-full justify-start"
+                >
+                  <category.icon className="mr-2 h-4 w-4" />
+                  {category.name}
+                </Button>
+              ))}
+            </nav>
+          </ScrollArea>
+        </aside>
+        <main className="flex-1 px-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {examples.map((example) => (
+              <Link href={`/examples/${example.id}`} className="block">
+                <Card key={example.id} className="bg-gray-900 border-gray-800 hover:bg-gray-800 transition-colors">
+                  <CardHeader className="pb-4">
+                    <CardTitle>{example.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-72 bg-gray-800 rounded-md">
+                      {example.image && <Image src={example.image} width={512} height={512} alt={example.title} className="w-full h-full object-cover" />}
+                    </div>
+                    <p className="text-gray-400 mt-2">{example.description}</p>
+                  </CardContent>
+                  <CardFooter className="justify-between">
+                    <div className="flex items-center space-x-2">
+                      {example.icon && <example.icon className="w-4 h-4" />}
+                      {example.tags && example.tags.map((tag) => (
+                        <span key={tag} className="text-xs bg-gray-800 px-2 py-1 rounded">{tag}</span>
+                      ))}
+                    </div>
+                    {example.tag && (
+                      <span className="text-xsn bg-purple-900 text-purple-300 px-2 py-1 rounded">{example.tag}</span>
+                    )}
+                  </CardFooter>
+                </Card>
+              </Link>
             ))}
-          </nav>
-        </ScrollArea>
-      </aside>
-      <main className="flex-1 p-6">
-        <h1 className="text-4xl font-bold mb-8 text-center">Built with LlamaGen.Ai OPENAPI</h1>
-        <p className="text-xl text-center mb-12 text-gray-400">OPEN-SOURCE EXAMPLES</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {examples.map((example) => (
-            <Link href={`/examples/${example.id}`} className="block">
-              <Card key={example.id} className="bg-gray-900 border-gray-800 hover:bg-gray-800 transition-colors">
-                <CardHeader className="pb-4">
-                  <CardTitle>{example.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-72 bg-gray-800 rounded-md">
-                  {example.image && <Image src={example.image} width={512} height={512} alt={example.title} className="w-full h-full object-cover" />}
-                  </div>
-                  <p className="text-gray-400 mt-2">{example.description}</p>
-                </CardContent>
-                <CardFooter className="justify-between">
-                  <div className="flex items-center space-x-2">
-                    {example.icon && <example.icon className="w-4 h-4" />}
-                    {example.tags && example.tags.map((tag) => (
-                      <span key={tag} className="text-xs bg-gray-800 px-2 py-1 rounded">{tag}</span>
-                    ))}
-                  </div>
-                  {example.tag && (
-                    <span className="text-xsn bg-purple-900 text-purple-300 px-2 py-1 rounded">{example.tag}</span>
-                  )}
-                </CardFooter>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </main>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
