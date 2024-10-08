@@ -14,7 +14,8 @@ class Webtoon {
 
     private constructor(apiKey: string) { // Make constructor private
         this.apiKey = apiKey;
-        this.baseUrl = "https://api.llamagen.ai/v1/comics/generations";
+        // this.baseUrl = "https://api.llamagen.ai/v1/comics/generations";
+        this.baseUrl = "https://llamagen.ai/api/v1/comics/generations";
     }
 
     static getInstance(apiKey?: string): Webtoon {
@@ -40,6 +41,8 @@ class Webtoon {
             size
         });
 
+
+        console.log(`${this.baseUrl}`);
         const response = await fetch(`${this.baseUrl}`, {
             method: 'POST',
             headers: {
@@ -61,6 +64,7 @@ class Webtoon {
      * @returns A promise that resolves to the comic artwork response.
      */
     async getComic(artworkId: string): Promise<ComicArtworkResponse> {
+        console.log(`${this.baseUrl}/${artworkId}`);
         const response = await fetch(`${this.baseUrl}/${artworkId}`, {
             headers: {
                 "Authorization": `Bearer ${this.apiKey}`,

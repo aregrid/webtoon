@@ -4,8 +4,10 @@ require('isomorphic-fetch');
 import Webtoon, { createComic, getComic, config } from '../src/Webtoon';
 
 describe('Webtoon', () => {
+    jest.setTimeout(30000); // Increase timeout to 30 seconds
+
     const WEBTOON_API_KEY = process.env.WEBTOON_API_KEY; // Use API key from environment variables
-    console.log(WEBTOON_API_KEY);
+    // console.log(WEBTOON_API_KEY);
     config({ apiKey: WEBTOON_API_KEY });
     afterEach(() => {
         jest.clearAllMocks();
@@ -24,8 +26,8 @@ describe('Webtoon', () => {
         expect(result).toHaveProperty('status'); // Adjust based on actual response structure
     });
 
-    test('should retrieve comic artwork by ID', async () => {
-        const artworkId = 'cm157cn28001tl5034krsd2dc';
+    test('should retrieve comic by ID', async () => {
+        const artworkId = 'cly1r49is0003jz09rnud1uor';
         
         // Remove mock and use actual request
         const result = await getComic(artworkId);
