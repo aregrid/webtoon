@@ -19,6 +19,8 @@ export const metadata: Metadata = {
 
 import Image from "next/image";
 import Link from "next/link";
+import { Github, ExternalLink, Twitter } from 'lucide-react';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,7 +55,29 @@ export default function RootLayout({
               </div>
             </Link>
           </div>
+            {/* New navigation items */}
+            <nav className="flex items-center space-x-8">
+            <Link  target="_blank" href="https://github.com/aregrid/webtoon/blob/master/packages/nextjs-app-examples/src/components/examples/DigitalCampaign.tsx" className="text-white hover:text-gray-300 flex items-center space-x-2">
+              <Github size={20} />
+              <span>GitHub UI Examples</span>
+            </Link>
+
+            <Link  target="_blank" href="https://github.com/aregrid/webtoon/blob/master/packages/nextjs-app-examples/src/app/api/webtoon/route.ts" className="text-white hover:text-gray-300 flex items-center space-x-2">
+              <Github size={20} />
+              <span>GitHub API Examples</span>
+            </Link>
+            <Link href="https://llamagen.ai" target="_blank" className="text-white hover:text-gray-300 flex items-center space-x-2">
+              <ExternalLink size={20} />
+              <span>LlamaGen.AI App</span>
+            </Link>
+            <Link href="https://twitter.com/llama_gen"  target="_blank" className="text-white hover:text-gray-300 flex items-center space-x-2">
+              <Twitter size={20} />
+              <span>Twitter</span>
+            </Link>
+          </nav>
+          
         </div>
+
 
         {children}
       </body>
