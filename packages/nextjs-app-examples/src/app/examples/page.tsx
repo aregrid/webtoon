@@ -62,7 +62,7 @@ export default function ExamplesPage() {
         </ScrollArea>
       </aside>
       <main className="flex-1 p-6">
-        <h1 className="text-4xl font-bold mb-8 text-center">Built with Liveblocks</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center">Built with LlamaGen.Ai OPENAPI</h1>
         <p className="text-xl text-center mb-12 text-gray-400">OPEN-SOURCE EXAMPLES</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {examples.map((example) => (

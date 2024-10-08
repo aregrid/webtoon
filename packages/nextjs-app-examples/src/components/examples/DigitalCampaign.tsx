@@ -69,15 +69,15 @@ const DigitalCampaign = () => {
         return (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {response.comicData[0].panels.map((panel: any, index: any) => (
-                    <Card key={index} className="overflow-hidden border-4 border-black">
+                    <Card key={index} className="overflow-hidden border-4 border-black dark:border-white">
                         <div className="aspect-square relative">
                             <img
-                                src={panel?.assetUrl || '/placeholder.svg?height=300&width=300&text=Panel ' + (index + 1)} // Use placeholder if no assetUrl
+                                src={panel?.assetUrl || '/placeholder.svg?height=300&width=300&text=Panel ' + (index + 1)}
                                 alt={`Comic panel ${index + 1}`}
                                 className="object-cover w-full h-full"
                             />
-                            <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 p-2">
-                                <p className="text-sm font-comic text-center">Caption for panel {index + 1}</p>
+                            <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-2">
+                                <p className="text-sm font-comic text-center dark:text-white">Caption for panel {index + 1}</p>
                             </div>
                         </div>
                     </Card>
@@ -87,37 +87,37 @@ const DigitalCampaign = () => {
     };
 
     return (
-        <div className=" grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4">
             <div>
-                <p className="text-sm text-gray-600 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
                 <Input
                     type="text"
                     placeholder="Prompt (Comic Story)"
                     value={prompt}
                     onChange={e => setPrompt(e.target.value)}
-                    className="border border-gray-300 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
                 />
-                <p className="text-sm text-gray-600 mb-2">Enter the main character's avatar image URL.</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter the main character's avatar image URL.</p>
                 <Input
                     type="text"
                     placeholder="Image URL (Main Character Avatar)"
                     value={imageUrl}
                     onChange={e => setImageUrl(e.target.value)}
-                    className="border border-gray-300 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
                 />
-                {imageUrl && ( // Preview image if imageUrl is provided
+                {imageUrl && (
                     <div className="mb-2">
                         <img
                             src={imageUrl}
                             alt="Preview"
-                            className="border border-gray-300 rounded-lg w-full h-auto max-w-40"
+                            className="border border-gray-300 dark:border-gray-700 rounded-lg w-full h-auto max-w-40"
                         />
                     </div>
                 )}
-                <p className="text-sm text-gray-600 mb-2">Create a comic book, wait for a few minutes, and you will receive a comic book based on the image URL and prompt.</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Create a comic book, wait for a few minutes, and you will receive a comic book based on the image URL and prompt.</p>
                 <Button
                     onClick={createArtwork}
-                    className="bg-blue-600 text-white rounded-lg p-2 mb-2 hover:bg-blue-700 transition duration-200"
+                    className="bg-blue-600 text-white rounded-lg p-2 mb-2 hover:bg-blue-700 transition duration-200 dark:bg-blue-700 dark:hover:bg-blue-800"
                 >
                     Create Comic Book
                 </Button>
@@ -126,15 +126,15 @@ const DigitalCampaign = () => {
                     placeholder="Artwork ID"
                     value={artworkId}
                     onChange={e => setArtworkId(e.target.value)}
-                    className="border border-gray-300 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
                 />
                 <Button
                     onClick={getArtwork}
-                    className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200"
+                    className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200 dark:bg-green-700 dark:hover:bg-green-800"
                 >
                     Get Comic Book
                 </Button>
-                {loading && <div className="loading-indicator text-center text-blue-600">Loading...</div>}
+                {loading && <div className="loading-indicator text-center text-blue-600 dark:text-blue-400">Loading...</div>}
             </div>
             <div>
                 {renderComicPanels()}
