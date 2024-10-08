@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ChevronDown, Code, MessageSquare, PenTool, Activity, Users, FileText, Bell, Briefcase, Type, Layout } from "lucide-react"
-
+import Image from "next/image"
 interface Example {
   id: string;
   title: string;
@@ -11,6 +11,7 @@ interface Example {
   icon?: React.ElementType;
   tags?: string[];
   tag?: string;
+  image?: string;
 }
 
 const examples: Example[] = [
@@ -19,6 +20,7 @@ const examples: Example[] = [
     title: 'Digital Campaign',
     description: 'An advanced issue tracking system',
     tag: 'Advanced',
+    image:"https://s.llamagen.ai/cm1599ue4000bkz031sim37t0-0.webp"
   },
 ];
 
@@ -64,7 +66,7 @@ export default function ExamplesPage() {
       <main className="flex-1 p-6">
         <h1 className="text-4xl font-bold mb-8 text-center">Built with LlamaGen.Ai OPENAPI</h1>
         <p className="text-xl text-center mb-12 text-gray-400">OPEN-SOURCE EXAMPLES</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {examples.map((example) => (
             <Link href={`/examples/${example.id}`} className="block">
               <Card key={example.id} className="bg-gray-900 border-gray-800 hover:bg-gray-800 transition-colors">
@@ -72,7 +74,9 @@ export default function ExamplesPage() {
                   <CardTitle>{example.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-40 bg-gray-800 rounded-md"></div>
+                  <div className="h-72 bg-gray-800 rounded-md">
+                  {example.image && <Image src={example.image} width={512} height={512} alt={example.title} className="w-full h-full object-cover" />}
+                  </div>
                   <p className="text-gray-400 mt-2">{example.description}</p>
                 </CardContent>
                 <CardFooter className="justify-between">
@@ -83,7 +87,7 @@ export default function ExamplesPage() {
                     ))}
                   </div>
                   {example.tag && (
-                    <span className="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">{example.tag}</span>
+                    <span className="text-xsn bg-purple-900 text-purple-300 px-2 py-1 rounded">{example.tag}</span>
                   )}
                 </CardFooter>
               </Card>

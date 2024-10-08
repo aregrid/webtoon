@@ -87,59 +87,64 @@ const DigitalCampaign = () => {
     };
 
     return (
-        <div className="grid grid-cols-2 gap-4">
-            <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
-                <Input
-                    type="text"
-                    placeholder="Prompt (Comic Story)"
-                    value={prompt}
-                    onChange={e => setPrompt(e.target.value)}
-                    className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
-                />
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter the main character's avatar image URL.</p>
-                <Input
-                    type="text"
-                    placeholder="Image URL (Main Character Avatar)"
-                    value={imageUrl}
-                    onChange={e => setImageUrl(e.target.value)}
-                    className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
-                />
-                {imageUrl && (
-                    <div className="mb-2">
-                        <img
-                            src={imageUrl}
-                            alt="Preview"
-                            className="border border-gray-300 dark:border-gray-700 rounded-lg w-full h-auto max-w-40"
-                        />
-                    </div>
-                )}
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Create a comic book, wait for a few minutes, and you will receive a comic book based on the image URL and prompt.</p>
-                <Button
-                    onClick={createArtwork}
-                    className="bg-blue-600 text-white rounded-lg p-2 mb-2 hover:bg-blue-700 transition duration-200 dark:bg-blue-700 dark:hover:bg-blue-800"
-                >
-                    Create Comic Book
-                </Button>
-                <Input
-                    type="text"
-                    placeholder="Artwork ID"
-                    value={artworkId}
-                    onChange={e => setArtworkId(e.target.value)}
-                    className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
-                />
-                <Button
-                    onClick={getArtwork}
-                    className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200 dark:bg-green-700 dark:hover:bg-green-800"
-                >
-                    Get Comic Book
-                </Button>
-                {loading && <div className="loading-indicator text-center text-blue-600 dark:text-blue-400">Loading...</div>}
+        <>
+            <div className="grid grid-cols-2 gap-4">
+                <div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
+                    <Input
+                        type="text"
+                        placeholder="Prompt (Comic Story)"
+                        value={prompt}
+                        onChange={e => setPrompt(e.target.value)}
+                        className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    />
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter the main character's avatar image URL.</p>
+                    <Input
+                        type="text"
+                        placeholder="Image URL (Main Character Avatar)"
+                        value={imageUrl}
+                        onChange={e => setImageUrl(e.target.value)}
+                        className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    />
+                    {imageUrl && (
+                        <div className="mb-2">
+                            <img
+                                src={imageUrl}
+                                alt="Preview"
+                                className="border border-gray-300 dark:border-gray-700 rounded-lg w-full h-auto max-w-40"
+                            />
+                        </div>
+                    )}
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Create a comic book, wait for a few minutes, and you will receive a comic book based on the image URL and prompt.</p>
+                    <Button
+                        onClick={createArtwork}
+                        className="bg-blue-600 text-white rounded-lg p-2 mb-2 hover:bg-blue-700 transition duration-200 dark:bg-blue-700 dark:hover:bg-blue-800"
+                    >
+                        Create Comic Book
+                    </Button>
+                    <Input
+                        type="text"
+                        placeholder="Artwork ID"
+                        value={artworkId}
+                        onChange={e => setArtworkId(e.target.value)}
+                        className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    />
+                    <Button
+                        onClick={getArtwork}
+                        className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200 dark:bg-green-700 dark:hover:bg-green-800"
+                    >
+                        Get Comic Book
+                    </Button>
+                    {loading && <div className="loading-indicator text-center text-blue-600 dark:text-blue-400">Loading...</div>}
+                </div>
+                <div>
+                    {renderComicPanels()}
+                </div>
+
             </div>
-            <div>
-                {renderComicPanels()}
-            </div>
-        </div>
+
+        </>
+
     );
 };
 
