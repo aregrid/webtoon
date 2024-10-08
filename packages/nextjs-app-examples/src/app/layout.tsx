@@ -25,9 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
         <div className="container flex items-center justify-between  md:py-6 py-3 px-1 md:px-10">
           <div className="flex">
@@ -48,7 +48,7 @@ export default function RootLayout({
                   width={256}
                   height={31}
                   className="md:w-32 w-28 object-contain"
-                  src={"/icons/LlamaGen.Ai-word.png"}
+                  src={"/icons/LlamaGen.Ai-word-white.png"}
                 />
               </div>
             </Link>
