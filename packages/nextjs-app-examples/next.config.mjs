@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: "https://webtoon-nextjs-app-examples.vercel.app/",
+  assetPrefix: process.env.NODE_ENV === 'production'?"https://webtoon-nextjs-app-examples.vercel.app/":'',
   env: {
     siteName: "LlamaGen.Ai",
     siteTitle:
