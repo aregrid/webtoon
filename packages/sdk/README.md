@@ -1,4 +1,13 @@
-# Good Example for create the comics, manga and manhwa with the webtoon SDK
+
+
+<div style="display: flex; flex-direction: row;">
+    <img width="32px" style="margin-right: 10px;" height="32px" src="./public/icons/light-logo-v3.jpg" alt="LlamaGen.Ai Logo" width="50%" />
+    <img width="256px" height="31px" src="./public/icons/LlamaGen.Ai-word-white.png" alt="LlamaGen.Ai Word Logo" width="50%" />
+</div>
+
+---
+> We are LlamaGen.Ai OpenAPI Team, dedicated to shipping the best comic-APIs infused with AI.
+
 
 Here's a good example of how to use the Webtoon SDK to create and retrieve comic artworks:
 
