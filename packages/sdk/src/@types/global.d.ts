@@ -1,8 +1,8 @@
 declare module 'Webtoon' {
     export default class Webtoon {
         constructor(apiKey: string);
-        createComicArtwork(params: any): Promise<{ artwork: { id: string } }>;
-        getComicArtwork(artworkId: string): Promise<{ status: any; comicData: any }>;
+        createComic(params: any): Promise<{ artwork: { id: string } }>;
+        getComic(artworkId: string): Promise<{ status: any; comicData: any }>;
     }
 }
 

@@ -4,8 +4,8 @@ Here's a good example of how to use the Webtoon SDK to create and retrieve comic
 
 ```javascript
 import {
-    createComicArtwork,
-    getComicArtwork,
+    createComic,
+    getComic,
     config
 } from 'webtoon';
 
@@ -14,15 +14,14 @@ config({
 });
 
 // Example parameters for creating comic artwork
-const createArtworkParams = {
-    prompt: "running",
-    imageUrl: "https://example.com/image.png",
-    gender: "male",
-    age: 30,
+const generationParams = {
+  "model": "cyani-model",
+  "prompt": "a comic about a cat and a dog",
+  "size": "1024x1024"
 };
 
 // Create comic artwork
-createComicArtwork(createArtworkParams).then(response => {
+createComic(generationParams).then(response => {
     console.log("Artwork created:", response);
 }).catch(error => {
     console.error("Error creating artwork:", error);
@@ -32,7 +31,7 @@ createComicArtwork(createArtworkParams).then(response => {
 const artworkId = "YOUR_ARTWORK_ID";
 
 // Retrieve comic artwork
-getComicArtwork(artworkId).then(response => {
+getComic(artworkId).then(response => {
     console.log("Artwork retrieved:", response);
 }).catch(error => {
     console.error("Error retrieving artwork:", error);

@@ -1,11 +1,10 @@
 import { ComicArtworkResponse } from './models/ComicArtworkResponse';
 
 // Define interfaces for parameters
-interface CreateComicArtworkParams {
+interface GenerationParams {
     prompt: string;
-    imageUrl: string;
-    gender: string;
-    age: number;
+    size?: string;
+    model?: string;
 }
 
 class Webtoon {
@@ -15,12 +14,12 @@ class Webtoon {
 
     private constructor(apiKey: string) { // Make constructor private
         this.apiKey = apiKey;
-        this.baseUrl = "https://llamagen.ai/api/openapi";
+        this.baseUrl = "https://api.llamagen.ai/v1/comics/generations";
     }
 
     static getInstance(apiKey?: string): Webtoon {
         if (!Webtoon.instance) {
-            if(!apiKey) {
+            if (!apiKey) {
                 throw new Error("API key is required");
             }
             Webtoon.instance = new Webtoon(apiKey);
@@ -33,27 +32,26 @@ class Webtoon {
      * @param params - The parameters for creating comic artwork.
      * @returns A promise that resolves to the generated artwork data.
      */
-    async createComicArtwork(params: CreateComicArtworkParams): Promise<Object> {
-        const { prompt, imageUrl, gender, age } = params;
-        const formdata = new URLSearchParams(); // Use URLSearchParams instead
-        formdata.append("prompt", prompt);
-        formdata.append("imageUrl", imageUrl);
-        formdata.append("gender", gender);
-        formdata.append("age", age.toString());
+    async createComic(params: GenerationParams): Promise<Object> {
+        const { prompt, size = "1024x1024", model = "cyani-model" } = params;
+        const body = JSON.stringify({
+            model: model,
+            prompt,
+            size
+        });
 
-        const response = await fetch(`${this.baseUrl}/artworks`, {
+        const response = await fetch(`${this.baseUrl}`, {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${this.apiKey}`,
-                "Content-Type": "application/x-www-form-urlencoded", // Change content type accordingly
+                "Content-Type": "application/json",
             },
-            body: formdata, // Use URLSearchParams as the body
+            body,
         });
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        //@ts-ignore
         return response.json();
     }
 
@@ -62,18 +60,17 @@ class Webtoon {
      * @param artworkId - The ID of the artwork to retrieve.
      * @returns A promise that resolves to the comic artwork response.
      */
-    async getComicArtwork(artworkId: string): Promise<ComicArtworkResponse> {
-        const response = await fetch(`${this.baseUrl}/artworks/${artworkId}`, {
+    async getComic(artworkId: string): Promise<ComicArtworkResponse> {
+        const response = await fetch(`${this.baseUrl}/${artworkId}`, {
             headers: {
                 "Authorization": `Bearer ${this.apiKey}`,
             },
         });
-
+    
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        //@ts-ignore
-        return response.json() as ComicArtworkResponse;
+        return response.json() ;
     }
 }
 
@@ -81,20 +78,20 @@ class Webtoon {
  * Configures the Webtoon instance with an API key.
  * @param config - Configuration object containing the API key.
  */
-function config(config: { apiKey: string|undefined }) {
+function config(config: { apiKey: string | undefined }) {
     return Webtoon.getInstance(config.apiKey);
 }
 
 // Add static methods for easier access
-async function createComicArtwork(params: CreateComicArtworkParams): Promise<Object> {
+async function createComic(params: GenerationParams): Promise<Object> {
     const instance = Webtoon.getInstance(); // Replace with actual API key management
-    return instance.createComicArtwork(params);
+    return instance.createComic(params);
 }
 
-async function getComicArtwork(artworkId: string): Promise<ComicArtworkResponse> {
+async function getComic(artworkId: string): Promise<ComicArtworkResponse> {
     const instance = Webtoon.getInstance(); // Replace with actual API key management
-    return instance.getComicArtwork(artworkId);
+    return instance.getComic(artworkId);
 }
 
-export { createComicArtwork, getComicArtwork, config };
+export { createComic, getComic, config };
 export default Webtoon;
