@@ -18,7 +18,7 @@ const examples: Example[] = [
   {
     id: 'digital-campaign',
     title: 'Digital Campaign',
-    description: 'An advanced issue tracking system',
+    description: 'Digital Campaign for your business',
     tag: 'Digital Campaign',
     image: "https://s.llamagen.ai/cm1599ue4000bkz031sim37t0-0.webp"
   },
