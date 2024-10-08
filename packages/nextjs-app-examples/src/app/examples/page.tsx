@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { ChevronDown, Code, MessageSquare, PenTool, Activity, Users, FileText, Bell, Briefcase, Type, Layout } from "lucide-react"
+import { ChevronDown, Code, MessageSquare, PenTool, Activity, Users, FileText, Bell, Briefcase, Type, Layout, Music, Video, Film, Mic, Zap, Scissors, Home, Gamepad, Book, Box, Shirt } from "lucide-react"
 import Image from "next/image"
 interface Example {
   id: string;
@@ -25,19 +25,37 @@ const examples: Example[] = [
 ];
 
 const categories = [
-  { name: "All technologies", icon: Code },
-  { name: "All examples", icon: Layout, active: true },
-  { name: "AI", icon: Activity },
-  { name: "Avatar stack", icon: Users },
-  { name: "Code editor", icon: Code },
-  { name: "Comments", icon: MessageSquare },
-  { name: "Creative tool", icon: PenTool },
-  { name: "Cursors", icon: PenTool },
-  { name: "Forms", icon: FileText },
-  { name: "Notifications", icon: Bell },
-  { name: "Productivity", icon: Briefcase },
-  { name: "Text editor", icon: Type },
-  { name: "Whiteboard", icon: Layout },
+  { name: "All AI Comic Use Cases", icon: Layout, active: true },
+  { name: "Digital Campaign", icon: Activity },
+  { name: "Storytelling", icon: FileText },
+  { name: "Character Creation", icon: Users },
+  { name: "Scene Generation", icon: PenTool },
+  { name: "Storyboarding", icon: Layout },
+  { name: "Comic Strip Generator", icon: Type },
+  { name: "Dialogue Writing", icon: MessageSquare },
+  { name: "Art Style Transfer", icon: PenTool },
+  { name: "Comic Book Editor", icon: Code },
+  { name: "Manga Creator", icon: PenTool },
+  { name: "Webcomic Platform", icon: Layout },
+  { name: "Educational Comics", icon: Briefcase },
+  { name: "Marketing Comics", icon: Bell },
+  { name: "Personalized Comics", icon: Users },
+  { name: "Music Composition", icon: Music },
+  { name: "Video Editing", icon: Video },
+  { name: "Short Drama Scripting", icon: FileText },
+  { name: "Movie Concept Generation", icon: Film },
+  { name: "Visual Effects Ideas", icon: Zap },
+  { name: "Costume Design", icon: Scissors },
+  { name: "Set Design Concepts", icon: Home },
+  { name: "Trailer Creation", icon: Film },
+  { name: "Game Development", icon: Gamepad },
+  { name: "Book Cover Design", icon: Book },
+  { name: "Poster Design", icon: Image },
+  { name: "Advertisement Design", icon: Film },
+  { name: "Branding", icon: PenTool },
+  { name: "Product Packaging", icon: Box },
+  { name: "Fashion Design", icon: Shirt },
+  
 ];
 
 export default function ExamplesPage() {
