@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Card } from "@/components/ui/card"; // Import Card component
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Loader2 } from "lucide-react"
-import { OpenaiArtworkExampleResponse } from "../docs/OpenaiArtworkExampleResponse"
-const WebtoonEditor = () => {
+import { OpenaiArtworkExampleResponse } from "../../docs/OpenaiArtworkExampleResponse"
+const DigitalCampaign = () => {
     const [prompt, setPrompt] = useState("A singer named Tailer travel in France");
     const [imageUrl, setImageUrl] = useState("https://s.llamagen.ai/a76b63ea-9e3d-41c4-b1a2-727509ed38e1.webp");
     const [artworkId, setArtworkId] = useState("cm1599ue4000bkz031sim37t0");
@@ -88,9 +87,8 @@ const WebtoonEditor = () => {
     };
 
     return (
-        <div className="manga-editor p-4 bg-gray-50 rounded-lg shadow-md grid grid-cols-2 gap-4">
+        <div className=" grid grid-cols-2 gap-4">
             <div>
-                <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">Manga Editor</h1>
                 <p className="text-sm text-gray-600 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
                 <Input
                     type="text"
@@ -107,7 +105,7 @@ const WebtoonEditor = () => {
                     onChange={e => setImageUrl(e.target.value)}
                     className="border border-gray-300 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                  {imageUrl && ( // Preview image if imageUrl is provided
+                {imageUrl && ( // Preview image if imageUrl is provided
                     <div className="mb-2">
                         <img
                             src={imageUrl}
@@ -145,4 +143,4 @@ const WebtoonEditor = () => {
     );
 };
 
-export default WebtoonEditor;
+export default DigitalCampaign;
