@@ -35,6 +35,12 @@ const examples: Example[] = [
     description:"Create a comic campaign for your school",
     tag:"School Comic Campaign",
     image:"https://s.llamagen.ai/48e12493-5920-4a75-9222-e8c992a7b549.webp"
+  },{
+    id:"storyboard",
+    title:"Storyboard",
+    description:"Create a storyboard for your comic",
+    tag:"Storyboard",
+    image:"https://s.llamagen.ai/d9c52a44-cb29-4cdf-bf7b-af46459a6567.webp"
   }
 ];
 
