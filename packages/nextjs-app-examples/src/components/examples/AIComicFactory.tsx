@@ -1,11 +1,15 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { Card } from "@/components/ui/card"; // Import Card component
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Select } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { MessageCircle, Settings, FileText, Share2 } from 'lucide-react'
 import { OpenaiArtworkExampleResponse } from "../../docs/OpenaiArtworkExampleResponse"
-const DigitalCampaign = () => {
+
+const AIComicFactory = () => {
     const [prompt, setPrompt] = useState(`An american female girl,she is a singer named Tailer travel in France
         Panel 1:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Determined, Standing with hands on hips) img is standing in Paris near the Eiffel tower. He is ready for his mission 
 
@@ -25,6 +29,10 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
     const [response, setResponse] = useState<{ comicData?: any } | null>(OpenaiArtworkExampleResponse); // Define response type
     const [loading, setLoading] = useState(false);
     const [fetching, setFetching] = useState(false);
+    const [comicStyle, setComicStyle] = useState('AMERICAN (1950)')
+    const [gridLayout, setGridLayout] = useState('GRID 1')
+    const [showCaptions, setShowCaptions] = useState(true)
+    const [showBubbles, setShowBubbles] = useState(true)
 
     useEffect(() => {
         if (artworkId) {
@@ -115,42 +123,60 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
     };
 
     return (
-        <>
-            <div className="grid grid-cols-2 gap-4">
-                <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
-                    <Textarea
-                        placeholder="Prompt (Comic Story)"
-                        rows={25}
-                        value={prompt}
-                        onChange={e => setPrompt(e.target.value)}
-                        className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
-                    />
-
-
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Create a comic book, wait for a few minutes, and you will receive a comic book based on the image URL and prompt.</p>
-                    <Button
-                        onClick={createArtwork}
-                        className="bg-blue-600 text-white rounded-lg p-2 mb-2 hover:bg-blue-700 transition duration-200 dark:bg-blue-700 dark:hover:bg-blue-800"
-                    >
-                        Create Comic Book
-                    </Button>
-                    <Input
-                        type="text"
-                        placeholder="Artwork ID"
-                        value={artworkId}
-                        onChange={e => setArtworkId(e.target.value)}
-                        className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
-                    />
-                    <Button
-                        onClick={startFetching}
-                        className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200 dark:bg-green-700 dark:hover:bg-green-800"
-                    >
-                        Get Comic Book
-                    </Button>
+        <div className="flex flex-col min-h-screen bg-gray-100">
+            <header className="bg-white shadow-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                        <Select
+                            value={comicStyle}
+                            onValueChange={setComicStyle}
+                            options={[
+                                { label: 'AMERICAN (1950)', value: 'AMERICAN (1950)' },
+                                { label: 'MANGA', value: 'MANGA' },
+                                { label: 'EUROPEAN', value: 'EUROPEAN' },
+                            ]}
+                        />
+                        <Select
+                            value={gridLayout}
+                            onValueChange={setGridLayout}
+                            options={[
+                                { label: 'GRID 1', value: 'GRID 1' },
+                                { label: 'GRID 2', value: 'GRID 2' },
+                                { label: 'GRID 3', value: 'GRID 3' },
+                            ]}
+                        />
+                        <div className="flex items-center space-x-2">
+                            <Switch
+                                checked={showCaptions}
+                                onCheckedChange={setShowCaptions}
+                                id="captions-toggle"
+                            />
+                            <label htmlFor="captions-toggle">CAPTIONS</label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Switch
+                                checked={showBubbles}
+                                onCheckedChange={setShowBubbles}
+                                id="bubbles-toggle"
+                            />
+                            <label htmlFor="bubbles-toggle">BUBBLES</label>
+                        </div>
+                    </div>
+                    <div className="flex items-center space-x-4">
+                        <Input
+                            value={prompt}
+                            onChange={(e) => setPrompt(e.target.value)}
+                            placeholder="Enter comic description..."
+                            className="w-96"
+                        />
+                        <Button onClick={createArtwork}>GO</Button>
+                    </div>
                 </div>
-                <div>
-                    {loading && <div className="flex flex-col items-center justify-center h-64">
+            </header>
+
+            <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                {loading ? (
+                    <div className="flex flex-col items-center justify-center h-64">
                         <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
                         <p className="text-lg font-bold font-comic text-blue-600 dark:text-blue-400">
                             Creating Comic...
@@ -158,15 +184,40 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
                         <p className="text-sm font-comic text-gray-600 dark:text-gray-400 mt-2">
                             This might take a few moments
                         </p>
-                    </div>}
-                    {!loading && renderComicPanels()}
+                    </div>
+                ) : (
+                    renderComicPanels()
+                )}
+            </main>
+
+            <footer className="bg-white shadow-sm mt-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                        <Button variant="outline">ABOUT</Button>
+                        <Button variant="outline">
+                            <MessageCircle className="w-4 h-4 mr-2" />
+                            DISCORD
+                        </Button>
+                        <Button>MAKE AI STORIES</Button>
+                    </div>
+                    <div className="flex items-center space-x-4">
+                        <Button variant="outline">
+                            <Settings className="w-4 h-4 mr-2" />
+                            SETTINGS
+                        </Button>
+                        <Button variant="outline">
+                            <FileText className="w-4 h-4 mr-2" />
+                            GET PDF
+                        </Button>
+                        <Button variant="outline">
+                            <Share2 className="w-4 h-4 mr-2" />
+                            SHARE
+                        </Button>
+                    </div>
                 </div>
-
-            </div>
-
-        </>
-
+            </footer>
+        </div>
     );
 };
 
-export default DigitalCampaign;
+export default AIComicFactory;
