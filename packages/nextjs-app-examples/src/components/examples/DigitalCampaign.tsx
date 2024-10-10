@@ -21,23 +21,30 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
         
         `);
     const [imageUrl, setImageUrl] = useState("https://s.llamagen.ai/a76b63ea-9e3d-41c4-b1a2-727509ed38e1.webp");
-    const [artworkId, setArtworkId] = useState("cm23inpdn0003jx03imym5zqm");
+    const [artworkId, setArtworkId] = useState("cm23iyz3r0001le03m39ykh8v");
     const [response, setResponse] = useState<{ comicData?: any } | null>(OpenaiArtworkExampleResponse); // Define response type
     const [loading, setLoading] = useState(false);
     const [fetching, setFetching] = useState(false);
 
     useEffect(() => {
         if (artworkId) {
-            if (response?.status === "PROCESSED") {
-                setFetching(false);
-                setLoading(false);
-                return;
-            }
-            const intervalId = setInterval(getArtwork, 5000); // Fetch artwork every 5 seconds
-            return () => clearInterval(intervalId); // Cleanup on unmount or artworkId change
+            // if (response?.status === "PROCESSED") {
+            //     setFetching(false);
+            //     setLoading(false);
+            //     return;
+            // }
+            getArtwork();
         }
-    }, [artworkId]); // Dependency on artworkId
+    }, [artworkId]);
+    const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
 
+    // Dependency on artworkId
+
+    const startNewTimerForNewComic = () => {
+        const id = setInterval(getArtwork, 5000); // Fetch artwork every 5 seconds
+        setIntervalId(id);
+    }
+    
     const createArtwork = async () => {
         const createArtworkParams = { prompt, imageUrl, gender: "female", age: 25 };
         setLoading(true);
@@ -51,6 +58,7 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
             setResponse(data);
             setArtworkId(data.id);
             setFetching(true);
+            startNewTimerForNewComic();
         } catch (error) {
             console.error("Error creating artwork:", error);
         } finally {
@@ -58,6 +66,9 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
         }
     };
 
+    const startFetching = () => {
+        getArtwork();
+    }
 
     const getArtwork = async () => {
         if (!artworkId) return;
@@ -71,6 +82,10 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
             } else {
                 setFetching(false); // Stop fetching if artwork is ready
                 setLoading(false);
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    setIntervalId(null);
+                }
             }
         } catch (error) {
             console.error("Error retrieving artwork:", error);
@@ -128,7 +143,7 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
                         className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
                     />
                     <Button
-                        onClick={getArtwork}
+                        onClick={startFetching}
                         className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200 dark:bg-green-700 dark:hover:bg-green-800"
                     >
                         Get Comic Book
@@ -144,7 +159,7 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
                             This might take a few moments
                         </p>
                     </div>}
-                    {renderComicPanels()}
+                    {!loading && renderComicPanels()}
                 </div>
 
             </div>
