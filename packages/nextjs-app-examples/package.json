@@ -16,7 +16,7 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",
-    "webtoon": "^1.0.5",
+    "webtoon": "^1.0.6",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -50,7 +50,9 @@
     "dotenv-cli": "^6.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.11",
+    "eslint-plugin-prettier": "^4.2.1",
     "postcss": "^8",
+    "prettier": "^2.8.8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

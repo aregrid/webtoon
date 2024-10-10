@@ -1,4 +1,9 @@
-import { createComic, getComic ,config} from 'webtoon';
+import {
+    createComic,
+    getComic,
+    config
+} from 'webtoon';
+
 import { NextResponse } from "next/server"; // {{ edit_1 }}
 
 config({ apiKey: process.env.WEBTOON_API_KEY });
