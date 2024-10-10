@@ -22,6 +22,13 @@ const examples: Example[] = [
     tag: 'Digital Campaign',
     image: "https://s.llamagen.ai/cm1599ue4000bkz031sim37t0-0.webp"
   },
+  {
+    id:"ai-comic-factory",
+    title:"AI Comic Factory",
+    description:"Create AI Comics with your own characters and stories",
+    tag:"AI Comic Factory",
+    image:"https://s.llamagen.ai/08386e26-2753-443b-b96b-ee62e3075161.webp"
+  }
 ];
 
 const categories = [

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
     description: 'Explore examples of webtoons built with LlamaGen.Ai OPENAI',
 };
 import DigitalCampaign from "@/components/examples/DigitalCampaign"
+import AIComicFactory from "@/components/examples/AIComicFactory"
 
 const formatSlug = (slug: string) => {
     return slug.replace(/-/g, ' ').toUpperCase();
@@ -26,6 +27,7 @@ export default function ExamplesPage({
             
             {/* <h1 className='text-2xl font-bold'>{formatSlug(slug)}</h1> */}
            {slug === 'digital-campaign' && <DigitalCampaign />}
+           {slug === 'ai-comic-factory' && <AIComicFactory />}
         </div>
     );
 }

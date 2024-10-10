@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix:
-    process.env.NODE_ENV === "production"
-      ? "https://webtoon-nextjs-app-examples.vercel.app/"
-      : "",
+  // assetPrefix:
+  //   process.env.NODE_ENV === "production"
+  //     ? "https://webtoon-nextjs-app-examples.vercel.app/"
+  //     : "",
   env: {
     siteName: "LlamaGen.Ai",
     siteTitle:
@@ -23,19 +23,19 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: "/llamagen_ai/examples",
-        destination: "https://webtoon-nextjs-app-examples.vercel.app/",
-      },
-      {
-        source: "/llamagen_ai/examples/:path*",
-        destination:
-          "https://webtoon-nextjs-app-examples.vercel.app/examples/:path*",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/llamagen_ai/examples",
+  //       destination: "https://webtoon-nextjs-app-examples.vercel.app/",
+  //     },
+  //     {
+  //       source: "/llamagen_ai/examples/:path*",
+  //       destination:
+  //         "https://webtoon-nextjs-app-examples.vercel.app/examples/:path*",
+  //     },
+  //   ];
+  // },
   images: {
     remotePatterns: [
       {
