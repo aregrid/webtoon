@@ -28,6 +28,13 @@ const examples: Example[] = [
     description:"Create AI Comics with your own characters and stories",
     tag:"AI Comic Factory",
     image:"https://s.llamagen.ai/08386e26-2753-443b-b96b-ee62e3075161.webp"
+  },
+  {
+    id:"school-comic-campaign",
+    title:"School Comic Campaign",
+    description:"Create a comic campaign for your school",
+    tag:"School Comic Campaign",
+    image:"https://s.llamagen.ai/48e12493-5920-4a75-9222-e8c992a7b549.webp"
   }
 ];
 

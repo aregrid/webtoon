@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 import DigitalCampaign from "@/components/examples/DigitalCampaign"
 import AIComicFactory from "@/components/examples/AIComicFactory"
+import SchoolComicCampaign from "@/components/examples/SchoolComicCampaign"
 
 const formatSlug = (slug: string) => {
     return slug.replace(/-/g, ' ').toUpperCase();
@@ -28,6 +29,7 @@ export default function ExamplesPage({
             {/* <h1 className='text-2xl font-bold'>{formatSlug(slug)}</h1> */}
            {slug === 'digital-campaign' && <DigitalCampaign />}
            {slug === 'ai-comic-factory' && <AIComicFactory />}
+           {slug === 'school-comic-campaign' && <SchoolComicCampaign />}
         </div>
     );
 }
