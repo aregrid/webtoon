@@ -41,21 +41,26 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
             //     setLoading(false);
             //     return;
             // }
-            getArtwork();
+            getArtwork(artworkId);
         }
     }, [artworkId]);
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
 
     // Dependency on artworkId
 
-    const startNewTimerForNewComic = () => {
-        const id = setInterval(getArtwork, 5000); // Fetch artwork every 5 seconds
+    const startNewTimerForNewComic = (artworkId: string) => {
+        if (intervalId) {
+            clearInterval(intervalId);
+            setIntervalId(null);
+        }
+        const id = setInterval(()=>{
+            getArtwork(artworkId);
+        }, 5000); // Fetch artwork every 5 seconds
         setIntervalId(id);
     }
-    
+
     const createArtwork = async () => {
         const createArtworkParams = { prompt, imageUrl, gender: "female", age: 25 };
-        setLoading(true);
         try {
             const res = await fetch('/api/comics', {
                 method: 'POST',
@@ -66,27 +71,28 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
             setResponse(data);
             setArtworkId(data.id);
             setFetching(true);
-            startNewTimerForNewComic();
+            startNewTimerForNewComic(data.id);
+            setLoading(true);
         } catch (error) {
             console.error("Error creating artwork:", error);
-        } finally {
-            setLoading(false);
         }
     };
 
-    const startFetching = () => {
-        getArtwork();
+    const startFetching = (artworkId: string) => {
+        getArtwork(artworkId);
     }
 
-    const getArtwork = async () => {
-        if (!artworkId) return;
-        setLoading(true);
+    const getArtwork = async (artworkId: string) => {
+            if (!artworkId) return;
+        // setLoading(true);
         try {
             const res = await fetch(`/api/comics?artworkId=${artworkId}`);
             const data = await res.json();
             setResponse(data);
             if (data.status === "LOADING") {
-                setTimeout(getArtwork, 5000); // Retry fetching artwork after 5 seconds
+                setTimeout(()=>{
+                    getArtwork(artworkId);
+                }, 5000); // Retry fetching artwork after 5 seconds
             } else {
                 setFetching(false); // Stop fetching if artwork is ready
                 setLoading(false);
@@ -97,30 +103,9 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
             }
         } catch (error) {
             console.error("Error retrieving artwork:", error);
-        } 
+        }
     };
 
-    const renderComicPanels = () => {
-        if (!response||response?.status === 'LOADING') return null;
-        return (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {response.comics && response.comics[0].panels.map((panel: any, index: any) => (
-                    <Card key={index} className="overflow-hidden border-4 border-black dark:border-white">
-                        <div className="aspect-square relative">
-                            <img
-                                src={panel?.assetUrl || '/placeholder.svg?height=300&width=300&text=Panel ' + (index + 1)}
-                                alt={`Comic panel ${index + 1}`}
-                                className="object-cover w-full h-full"
-                            />
-                            <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-2">
-                                <p className="text-sm font-comic text-center dark:text-white">Caption for panel {index + 1}</p>
-                            </div>
-                        </div>
-                    </Card>
-                ))}
-            </div>
-        );
-    };
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-100">
@@ -175,7 +160,7 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
             </header>
 
             <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {loading ? (
+                {loading && (
                     <div className="flex flex-col items-center justify-center h-64">
                         <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
                         <p className="text-lg font-bold font-comic text-blue-600 dark:text-blue-400">
@@ -185,9 +170,29 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
                             This might take a few moments
                         </p>
                     </div>
-                ) : (
-                    renderComicPanels()
                 )}
+
+                <div className={
+                    loading ? "hidden" : ""
+                }>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {response.comics && response.comics[0].panels.map((panel: any, index: any) => (
+                            <Card key={index} className="overflow-hidden border-4 border-black dark:border-white">
+                                <div className="aspect-square relative">
+                                    <img
+                                        src={panel?.assetUrl || '/placeholder.svg?height=300&width=300&text=Panel ' + (index + 1)}
+                                        alt={`Comic panel ${index + 1}`}
+                                        className="object-cover w-full h-full"
+                                    />
+                                    <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-2">
+                                        <p className="text-sm font-comic text-center dark:text-white">Caption for panel {index + 1}</p>
+                                    </div>
+                                </div>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+
             </main>
 
             <footer className="bg-white shadow-sm mt-8">
