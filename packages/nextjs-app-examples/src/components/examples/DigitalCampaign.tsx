@@ -97,15 +97,15 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
         return (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {response.comics && response.comics[0].panels.map((panel: any, index: any) => (
-                    <Card key={index} className="overflow-hidden border-4 border-black dark:border-white">
+                    <Card key={index} className="overflow-hidden border-4 border-black">
                         <div className="aspect-square relative">
                             <img
                                 src={panel?.assetUrl || '/placeholder.svg?height=300&width=300&text=Panel ' + (index + 1)}
                                 alt={`Comic panel ${index + 1}`}
                                 className="object-cover w-full h-full"
                             />
-                            <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-2">
-                                <p className="text-sm font-comic text-center dark:text-white">Caption for panel {index + 1}</p>
+                            <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 p-2">
+                                <p className="text-sm font-comic text-center">Caption for panel {index + 1}</p>
                             </div>
                         </div>
                     </Card>
@@ -118,20 +118,20 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
         <>
             <div className="grid grid-cols-2 gap-4">
                 <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
+                    <p className="text-sm text-gray-600 mb-2">Enter a comic story in the prompt and the main character's avatar image URL.</p>
                     <Textarea
                         placeholder="Prompt (Comic Story)"
                         rows={25}
                         value={prompt}
                         onChange={e => setPrompt(e.target.value)}
-                        className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                        className="border border-gray-300 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
 
 
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Create a comic book, wait for a few minutes, and you will receive a comic book based on the image URL and prompt.</p>
+                    <p className="text-sm text-gray-600 mb-2">Create a comic book, wait for a few minutes, and you will receive a comic book based on the image URL and prompt.</p>
                     <Button
                         onClick={createArtwork}
-                        className="bg-blue-600 text-white rounded-lg p-2 mb-2 hover:bg-blue-700 transition duration-200 dark:bg-blue-700 dark:hover:bg-blue-800"
+                        className="bg-blue-600 text-white rounded-lg p-2 mb-2 hover:bg-blue-700 transition duration-200"
                     >
                         Create Comic Book
                     </Button>
@@ -140,11 +140,11 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
                         placeholder="Artwork ID"
                         value={artworkId}
                         onChange={e => setArtworkId(e.target.value)}
-                        className="border border-gray-300 dark:border-gray-700 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                        className="border border-gray-300 rounded-lg p-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <Button
                         onClick={startFetching}
-                        className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200 dark:bg-green-700 dark:hover:bg-green-800"
+                        className="bg-green-600 text-white rounded-lg p-2 mb-2 hover:bg-green-700 transition duration-200"
                     >
                         Get Comic Book
                     </Button>
@@ -152,10 +152,10 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
                 <div>
                     {loading && <div className="flex flex-col items-center justify-center h-64">
                         <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-                        <p className="text-lg font-bold font-comic text-blue-600 dark:text-blue-400">
+                        <p className="text-lg font-bold font-comic text-blue-600">
                             Creating Comic...
                         </p>
-                        <p className="text-sm font-comic text-gray-600 dark:text-gray-400 mt-2">
+                        <p className="text-sm font-comic text-gray-600 mt-2">
                             This might take a few moments
                         </p>
                     </div>}

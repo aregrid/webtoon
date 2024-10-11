@@ -9,14 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "dotenv": "^16.4.5",
-    "lucide-react": "^0.441.0",
-    "next": "14.2.11",
-    "react": "^18",
-    "react-dom": "^18",
-    "tailwind-merge": "^2.5.2",
-    "webtoon": "^1.0.6",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -40,8 +32,16 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "class-variance-authority": "^0.7.0"
-
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "lucide-react": "^0.441.0",
+    "next": "14.2.11",
+    "react": "^18",
+    "react-dom": "^18",
+    "sonner": "^1.5.0",
+    "tailwind-merge": "^2.5.2",
+    "webtoon": "^1.0.6"
   },
   "devDependencies": {
     "@types/node": "^20",

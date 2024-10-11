@@ -21,7 +21,7 @@ export default function ExamplesPage({
     return (
         <div className="container mx-auto px-4 py-8 space-y-4">
             <nav className="text-sm mb-4">
-                <Link href="/" className="text-blue-600 hover:underline">Examples</Link>
+                <Link href="/docs/examples" className="text-blue-600 hover:underline">Examples</Link>
                 <span className="mx-2">&gt;</span>
                 <span className="text-white">{formatSlug(slug)}</span>
             </nav>
