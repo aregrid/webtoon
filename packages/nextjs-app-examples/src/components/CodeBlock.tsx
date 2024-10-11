@@ -5,7 +5,7 @@ import { toast } from "sonner"
 // import Highlight from 'react-highlight'
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
 
 interface CodeBlockProps {
     language: string;
@@ -35,15 +35,17 @@ export function CodeBlock({ language, code, title }: CodeBlockProps) {
                     </Button>
                 </div>
             </CardHeader>
-            <CardContent className="p-4 pt-0">
+            <CardContent className="p-2 pt-0">
                 <SyntaxHighlighter
                     language={language}
-                    style={vs}
+                    style={docco}
                     showLineNumbers={true}
                     customStyle={{
                         backgroundColor: 'white',
                         margin: 0,
-                        fontSize: '12px'
+                        border: 'none',
+                        fontSize: '14px',
+                        // paddingLeft: '2px'
                     }}
                 >
                     {code}
