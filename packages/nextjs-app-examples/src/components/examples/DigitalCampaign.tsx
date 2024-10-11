@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { OpenaiArtworkExampleResponse } from "../../docs/OpenaiArtworkExampleResponse"
+import ComicPanels from '../ComicPanels';
 const DigitalCampaign = () => {
     const [prompt, setPrompt] = useState(`An american female girl,she is a singer named Tailer travel in France
         Panel 1:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Determined, Standing with hands on hips) img is standing in Paris near the Eiffel tower. He is ready for his mission 
@@ -95,22 +96,7 @@ Panel 6:Tailer(((dressed in white casual t-shirt and jeans)), bodyType slim, Det
     const renderComicPanels = () => {
         if (!response||response?.status === 'LOADING') return null;
         return (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {response.comics && response.comics[0].panels.map((panel: any, index: any) => (
-                    <Card key={index} className="overflow-hidden border-4 border-black">
-                        <div className="aspect-square relative">
-                            <img
-                                src={panel?.assetUrl || '/placeholder.svg?height=300&width=300&text=Panel ' + (index + 1)}
-                                alt={`Comic panel ${index + 1}`}
-                                className="object-cover w-full h-full"
-                            />
-                            <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 p-2">
-                                <p className="text-sm font-comic text-center">Caption for panel {index + 1}</p>
-                            </div>
-                        </div>
-                    </Card>
-                ))}
-            </div>
+               <ComicPanels generation={response}/>
         );
     };
 

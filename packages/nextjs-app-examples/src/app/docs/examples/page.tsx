@@ -80,8 +80,8 @@ const categories = [
 
 export default function ExamplesPage() {
   return (
-    <div className='max-w-7xl mx-auto py-20'>
-      <div className='w-[400px] mx-auto py-10'>
+    <div className='max-w-7xl mx-auto'>
+      <div className='w-[400px] mx-auto py-8'>
         <h1 className="text-2xl font-bold mb-8 text-center text-gray-600">OPEN-SOURCE EXAMPLES</h1>
         <h2 className="text-7xl text-center mb-12 text-black">Built with LlamaGen.Ai</h2>
       </div>

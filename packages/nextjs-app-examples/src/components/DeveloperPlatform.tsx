@@ -17,28 +17,14 @@ export default function Component() {
 }'`
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 p-8">
-      <h1 className="text-4xl font-bold mb-8">LlamaGen.AI developer platform</h1>
-      <div className="bg-gray-100 rounded-lg p-6">
+  
+      <div className="bg-gray-100 rounded-lg p-6 ">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-semibold">Developer quickstart</h2>
           <div className="text-gray-600 flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-2"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-             3 minutes
+            <a href="https://llamagen.ai/openapi?_callback=startFreeTrial" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              Generate $LLAMAGENAI_API_KEY
+            </a>
           </div>
         </div>
         <p className="text-gray-600 mb-4">
@@ -62,6 +48,5 @@ export default function Component() {
           </pre>
         </div>
       </div>
-    </div>
   )
 }

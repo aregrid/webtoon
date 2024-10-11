@@ -49,9 +49,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const navItems = [
-    { title: "Getting Started", icon: BookOpen,href:"/docs/overview" },
+    { title: "Getting Started", icon: BookOpen, href: "/docs/overview" },
     // { title: "API Reference", icon: Code,href:"/docs/api-reference" },
-    { title: "Examples", icon: Layers,href:"/docs/examples" },
+    { title: "Examples", icon: Layers, href: "/docs/examples" },
     // { title: "Resources", icon: Bookmark,href:"/docs/resources" },
     { title: "UI Examples", icon: Layout, href: "https://github.com/aregrid/webtoon/blob/master/packages/nextjs-app-examples/src/components/examples/DigitalCampaign.tsx", external: true },
     { title: "API Examples", icon: Server, href: "https://github.com/aregrid/webtoon/blob/master/packages/nextjs-app-examples/src/app/api/webtoon/route.ts", external: true },
@@ -66,7 +66,7 @@ export default function RootLayout({
         className={`antialiased `}
       >
         {/* Header */}
-        <header className="flex items-center justify-between p-4 border-b">
+        <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-50">
           <div className="flex items-center space-x-4">
             <Link href="/" className="flex items-center space-x-2">
               <Image
@@ -81,19 +81,19 @@ export default function RootLayout({
                 width={256}
                 height={31}
                 className="md:w-32 w-28 object-contain"
-                src={"/icons/LlamaGen.Ai-word-white.png"}
+                src={"/icons/LlamaGen.Ai-word.png"}
               />
             </Link>
           </div>
-          <nav className="flex items-center space-x-4">
-            <Button variant="outline" asChild>
+          <nav className="flex items-center space-x-4 mr-8">
+            <Button variant="ghost" asChild>
               <Link href="/">Docs</Link>
             </Button>
             {/* <Button variant="ghost">API reference</Button> */}
-            <Button variant="outline" asChild>
+            <Button variant="ghost" asChild>
               <Link href="https://llamagen.ai/login" target="_blank">Log in</Link>
             </Button>
-            <Button asChild>
+            <Button variant="ghost" asChild>
               <Link href="https://llamagen.ai/signup" target="_blank">Sign up</Link>
             </Button>
           </nav>
@@ -101,7 +101,7 @@ export default function RootLayout({
 
         <div className="flex">
           {/* Sidebar */}
-          <aside className="w-64 h-screen p-4 border-r">
+          <aside className="fixed top-[73px] left-0 w-64 h-[calc(100vh-73px)] p-4 overflow-y-auto">
             <div className="mb-4">
               <Input type="search" placeholder="Search" className="w-full" />
             </div>
@@ -120,14 +120,13 @@ export default function RootLayout({
               </ul>
             </nav>
           </aside>
-
           {/* Main content */}
-          <main className="flex-1 p-8">
+          <main className="flex-1 p-8 ml-64">
             {children}
           </main>
         </div>
 
-        <Toaster position="bottom-right"  richColors />
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );
