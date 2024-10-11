@@ -47,7 +47,7 @@ export default function HomeComicPanels() {
  
     return (
 
-        <div className="bg-gray-100 rounded-lg p-6">
+        <div className="p-6">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-semibold">Create your own comics</h2>
             </div>

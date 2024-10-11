@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "highlight.js/styles/github.css"; // You can choose a different style
+
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Search, Menu, ChevronDown, Copy, BookOpen, Code, Layers, Bookmark, Layout, Server, ExternalLink, Twitter } from 'lucide-react';
