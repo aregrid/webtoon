@@ -2,6 +2,7 @@ import Layout from "@/components/layouts/Layout"
 import type { Metadata } from "next";
 import "./globals.css";
 import "highlight.js/styles/github.css"; // You can choose a different style
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.siteUrl || "https://platform.llamagen.ai/"),
@@ -47,6 +48,7 @@ export default function RootLayout({
   return (
     <Layout>
       {children}
+      <Analytics/>
     </Layout>
   );
 }
