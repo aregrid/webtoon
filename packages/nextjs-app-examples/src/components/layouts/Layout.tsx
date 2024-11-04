@@ -55,7 +55,7 @@ export default function RootLayout({
     { title: "Examples", icon: Layers, href: "/docs/examples" },
     // { title: "Resources", icon: Bookmark,href:"/docs/resources" },
     { title: "UI Examples", icon: Layout, href: "https://github.com/aregrid/webtoon/blob/master/packages/nextjs-app-examples/src/components/examples/DigitalCampaign.tsx", external: true },
-    { title: "API Examples", icon: Server, href: "https://github.com/aregrid/webtoon/blob/master/packages/nextjs-app-examples/src/app/api/webtoon/route.ts", external: true },
+    { title: "API Examples", icon: Server, href: "https://github.com/aregrid/webtoon/blob/master/packages/nextjs-app-examples/src/app/api/comics/route.ts", external: true },
     { title: "LlamaGen.AI", icon: ExternalLink, href: "https://llamagen.ai", external: true },
     { title: "Twitter", icon: Twitter, href: "https://twitter.com/llama_gen", external: true },
   ];
